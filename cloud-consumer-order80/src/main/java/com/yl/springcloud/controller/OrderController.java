@@ -3,6 +3,7 @@ package com.yl.springcloud.controller;
 import com.yl.springcloud.entities.CommonResult;
 import com.yl.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +22,10 @@ public class OrderController {
     public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
     @Resource
     private RestTemplate restTemplate;
+
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @GetMapping("/consumer/payment/create")
     public CommonResult<Payment> create(Payment payment){
